@@ -1,0 +1,45 @@
+﻿@model Feed
+
+<div>
+    <div class="mb-3">
+        <h1>Details Page</h1>
+    </div>
+    <div class="mt-2">
+        <div>
+            <h2>Name</h2>
+            <strong>@Model.Name</strong>
+            <hr />
+            <h2>Url</h2>
+            <a href="@Model.Url">@Model.Url</a>
+            <hr />
+            <a asp-controller="Feeds" asp-action="Index" class="btn btn-secondary">Back to list</a> 
+        </div>
+        <div class="d-flex justify-content-between mt-2">
+            <h1>Aricles</h1>
+            <a asp-controller="Feeds" asp-action="Reload" asp-route-id="@Model.Id" class="btn btn-primary d-flex justify-content-center align-items-center">
+                <i class="bi bi-arrow-clockwise"></i> &nbsp; Feed Articles
+            </a>
+        </div>
+        <hr />
+
+        <div class="d-flex flex-lg-wrap">
+            @if (Model.Articles != null)
+            {
+                @foreach (var article in Model.Articles)
+                {
+                    <div class="col-md-3 mb-2">
+                        <div class="card mx-1">
+                            <img src="@article.Image" class="card-img-top" alt="@article.Title">
+                            <div class="card-body">
+                                <b>@article.PublishDate</b>
+                                <h5 class="card-title">@article.Title</h5>
+                                <p class="card-text">@article.Description</p>
+                                <a href="@article.Link" class="btn btn-primary">Article Details</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
